@@ -1,0 +1,100 @@
+<div class="patient-dashboard">
+  <app-search-bar (patientSelected)="onPatientSelected($event)"></app-search-bar>
+
+  <p-breadcrumb [model]="items"></p-breadcrumb>
+
+  <div class="action-center-header">
+    <div class="header-content">
+      <span class="action-center">Action Center</span>
+      <ng-container *ngIf="selectedPatient">
+        <span class="separator">></span>
+        <span class="patient-name">{{ selectedPatient.patient_name }}</span>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="patient-card">
+    <div class="action-icons" *ngIf="selectedPatient">
+      <div class="icon-item" (click)="selectIcon('badge')">
+        <img src="assets/logo1.png" alt="Badge" class="logo" />
+        <span class="icon-label">{{ selectedPatient.badge }}</span>
+        <div class="selection-bar" [ngClass]="{'selected': selectedIcon === 'badge'}"></div>
+      </div>
+      <div class="icon-item" (click)="selectIcon('pulse')">
+        <img src="assets/logo2.png" alt="Pulse" class="logo" />
+        <span class="icon-label">{{ selectedPatient.pulse }}</span>
+        <div class="selection-bar" [ngClass]="{'selected': selectedIcon === 'pulse'}"></div>
+      </div>
+      <div class="icon-item" (click)="selectIcon('unscheduled')">
+        <img src="assets/logo3.png" alt="Treatments" class="logo" />
+        <span class="icon-label">{{ selectedPatient.unscheduled_treatment }} Unscheduled<br>Treatments</span>
+        <div class="selection-bar" [ngClass]="{'selected': selectedIcon === 'unscheduled'}"></div>
+      </div>
+      <div class="icon-item" (click)="selectIcon('preventative')">
+        <img src="assets/logo4.png" alt="Next Preventative" class="logo" />
+        <span class="icon-label">Next Preventative<br>{{ selectedPatient.next_preventative_appointment }}</span>
+        <div class="selection-bar" [ngClass]="{'selected': selectedIcon === 'preventative'}"></div>
+      </div>
+      <div class="icon-item" (click)="selectIcon('regular')">
+        <img src="assets/logo5.png" alt="Next Regular" class="logo" />
+        <span class="icon-label">Next Regular<br>{{ selectedPatient.next_regular_appointment }}</span>
+        <div class="selection-bar" [ngClass]="{'selected': selectedIcon === 'regular'}"></div>
+      </div>
+    </div>
+
+    <div class="section-divider" *ngIf="selectedPatient">
+      <h3>Patient Journey</h3>
+      <div class="line"></div>
+      <div class="patient-journey-bar"></div>
+    </div>
+
+    <div *ngIf="selectedPatient">
+      <div class="timeline-container">
+        <div class="timeline">
+          <div
+            *ngFor="let event of events; let i = index"
+            class="timeline-event"
+            [style.left]="getEventPosition(i)"
+          >
+            <div class="event-circle" [style.background]="event.color"></div>
+            <div class="event-label">{{ event.status }}</div>
+          </div>
+        </div>
+        <div class="timeline">
+          <div
+            *ngFor="let month of months; let i = index"
+            class="timeline-event"
+            [style.left]="getEventPosition(i)"
+          >
+            <div class="event-circle" [style.background]="month.treatment ? month.color : 'transparent'"></div>
+            <div class="event-label">{{ month.treatment ? month.treatment : '' }}</div>
+          </div>
+        </div>
+        <div class="view-all-container">
+          <a href="#" (click)="onViewAll()">View All</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+      <h2>Previous Appointments</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let appointment of allAppointments">
+            <td>{{ appointment.date }}</td>
+            <td>{{ appointment.type }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button (click)="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
