@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
     PatientDashboardRoutingModule,
     SharedModule,
 PrimeNGModule,
-FormsModule
+FormsModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 

@@ -1,1 +1,34 @@
-<router-outlet></router-outlet>
+<!-- <div>
+    <label for="patient-select">Select a Patient:</label>
+    <select id="patient-select" (change)="selectPatient($event)">
+      <option *ngFor="let patient of patients; let i = index" [value]="i">
+        {{ patient.patient_name }}
+      </option>
+    </select>
+  
+    <div class="timeline-container">
+      <div class="timeline-header">
+        <h3>{{ selectedPatient?.patient_name }}'s Appointment Timeline</h3>
+      </div>
+      <div *ngIf="selectedPatient?.past_appointments?.length" class="timeline">
+        <div class="timeline-dots-container">
+          <div
+            *ngFor="let appointment of selectedPatient?.past_appointments"
+            class="timeline-dot-container"
+          >
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">{{ appointment.date }}</div>
+              <div class="timeline-type">{{ appointment.type }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+                
+      
+    </div>
+  </div>
+   -->
+
+
+   <router-outlet></router-outlet>

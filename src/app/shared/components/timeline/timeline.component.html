@@ -1,0 +1,20 @@
+<div class="timeline">
+  <!-- Container for all dots with background and rounded edges -->
+  <div class="timeline-dots-container">
+    <div *ngFor="let appointment of patient?.past_appointments; let last = last" class="timeline-dot-container">
+      <div class="timeline-dot"></div>
+      <!-- Add a line if it's not the last dot -->
+      <div *ngIf="!last" class="timeline-line"></div>
+    </div>
+    <!-- View All link displayed after the dots -->
+    <a href="#" class="timeline-view-all" (click)="onViewAll()">View All</a>
+  </div>
+
+  <!-- Container for date and type -->
+  <div class="timeline-content-container">
+    <div *ngFor="let appointment of patient?.past_appointments" class="timeline-content">
+      <div class="timeline-date">{{ formatDate(appointment.date) }}</div>
+      <div class="timeline-type">{{ appointment.type }}</div>
+    </div>
+  </div>
+</div>

@@ -78,4 +78,11 @@ export class PatientDashboardComponent implements OnInit {
   closeModal() {
     this.showModal = false; 
   }
+
+  formatDate(date: string): string {
+    console.log(date)
+    const dateObj = new Date(date);
+    const options: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric' };
+    return dateObj.toLocaleDateString('en-US', options);
+  }
 }

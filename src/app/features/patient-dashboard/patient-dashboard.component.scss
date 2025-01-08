@@ -79,50 +79,6 @@ $primary-color: #009688;
   }
 }
 
-.timeline-container {
-  padding: 0 40px;
-  position: relative;
-  height: auto; 
-}
-
-.timeline {
-  position: relative;
-  height: 100%;
-  margin: 0 50px;
-}
-
-.view-all-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 10px; 
-}
-
-.timeline-event {
-  position: absolute;
-  text-align: center;
-  transform: translateY(-50%);
-}
-
-.event-circle {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin-bottom:15px;
-}
-
-.future-appointment {
-  border: 1px dotted #9CE6DC; 
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: transparent; 
-}
-
-.event-label {
-  margin-top: 5px;
-  font-size: 12px;
-}
-
 .modal {
   position: fixed;
   top: 0;
@@ -258,3 +214,4 @@ body, html {
 .patient-name {
   color: #2563EB;
 }
+
