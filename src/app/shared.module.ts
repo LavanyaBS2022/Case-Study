@@ -5,8 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { PrimeNGModule } from './core/models/primeng.model';
 import { TimelineComponent } from './shared/components/timeline/timeline.component';
 
-
-
 @NgModule({
   declarations: [
     SearchBarComponent,

@@ -1,7 +1,6 @@
 <div class="patient-dashboard">
   <app-search-bar (patientSelected)="onPatientSelected($event)"></app-search-bar>
 
-  <p-breadcrumb [model]="items"></p-breadcrumb>
 
   <div class="action-center-header">
     <div class="header-content">
@@ -41,6 +40,7 @@
         <div class="selection-bar" [ngClass]="{ 'selected': selectedIcon === 'regular' }"></div>
       </div>
     </div>
+    
 
     <div class="section-divider" *ngIf="selectedPatient">
       <h3>Patient Journey</h3>

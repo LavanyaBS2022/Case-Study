@@ -2,8 +2,6 @@
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
-  padding: 20px 40px;
-  margin-bottom: 30px;
 }
 
 $primary-color: #009688;
@@ -37,8 +35,8 @@ $primary-color: #009688;
     height: 5px;
     margin-top: 50px;
     padding: 2px;
-    margin-left: 70px;
-    margin-right: 100px;
+    margin-left: 0; 
+    margin-right: 0; 
 }
 
 .icon-item {
@@ -47,11 +45,16 @@ $primary-color: #009688;
   align-items: center;
   text-align: center;
   width: 100px;
+  height: 150px;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+
 }
 
 .logo {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
   margin-bottom: 10px;
 }
@@ -158,10 +161,10 @@ html {
 
 .patient-card {
   background-color: #fff;
-  width: 90%;
+  width: 100%;
   min-height: 85vh;
   box-sizing: border-box;
-  margin: 0 30px;
+  margin: 0;
   border-radius: 12px;
   padding: 32px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -175,7 +178,7 @@ body, html {
 }
 
 .search-container {
-  margin: 0 30px;
+  margin: 0;
 }
 
 .search-container input {
@@ -192,7 +195,7 @@ body, html {
 }
 
 .action-center-header {
-  margin: 24px 30px;
+  margin: 24px 5px; 
 }
 
 .header-content {
@@ -215,3 +218,28 @@ body, html {
   color: #2563EB;
 }
 
+
+.icon-item {
+  text-align: center;
+  cursor: pointer;
+}
+
+.icon-item img {
+  display: block;
+  margin: 0 auto;
+}
+
+
+.selection-bar {
+  height: 2px;
+  width: 80%;
+  background-color: gray;
+  position: absolute; 
+  bottom: 0;
+  transition: background-color 0.3s ease;
+}
+
+
+.selection-bar.selected {
+  background-color: $primary-color;
+}

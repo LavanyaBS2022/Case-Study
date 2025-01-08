@@ -17,11 +17,6 @@ export class PatientDashboardComponent implements OnInit {
   allAppointments: { date: string; type: string }[] = [];
   showModal: boolean = false;
 
-  items: any[] = [
-    { label: 'Home', icon: 'pi pi-home' },
-    { label: 'Patient Dashboard', icon: 'pi pi-user' }
-  ];
-
   constructor(private patientService: PatientService) {}
 
   ngOnInit() {
