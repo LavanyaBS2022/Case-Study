@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
-import { SharedModule } from './shared.module';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from './shared/components/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,8 +15,8 @@ import { CommonModule } from '@angular/common';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule,
-    FormsModule, // Add FormsModule here
+    FormsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

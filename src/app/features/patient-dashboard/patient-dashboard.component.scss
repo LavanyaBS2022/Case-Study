@@ -156,13 +156,13 @@ html {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 24px;
+  padding: 18px 24px;
 }
 
 .patient-card {
   background-color: #fff;
   width: 100%;
-  min-height: 85vh;
+  min-height: 77vh;
   box-sizing: border-box;
   margin: 0;
   border-radius: 12px;
@@ -195,7 +195,7 @@ body, html {
 }
 
 .action-center-header {
-  margin: 24px 5px; 
+  margin: 15px 5px; 
 }
 
 .header-content {
