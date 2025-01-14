@@ -1,0 +1,66 @@
+<div *ngIf="isOpen" class="modal-overlay">
+    <div class="modal-content">
+      <!-- Header -->
+      <div class="modal-header">
+        <span class="date-text">Message shared to Lulu on 28-Apr-24</span>
+        <button class="close-btn" (click)="onClose.emit()">×</button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+        <!-- Greeting -->
+        <div class="greeting">
+          <span class="patient-name">Lulu</span>, Great progress! We've completed a significant part of your gum treatments, and you're almost there. Keep up the good work!
+        </div>
+
+        <!-- Care Instructions -->
+        <div class="instructions-section">
+          <h3>At-Home Care Instructions:</h3>
+          <ul class="care-list">
+            <li>
+              <span class="bullet"></span>
+              Use a soft-bristled toothbrush and floss gently to avoid irritating your gums.
+            </li>
+            <li>
+              <span class="bullet"></span>
+              Drink plenty of water to help stimulate saliva production, which naturally helps to clean the mouth and protect gums.
+            </li>
+            <li>
+              <span class="bullet"></span>
+              A diet rich in vitamins C and K is good for gum health
+            </li>
+            <li>
+              <span class="bullet"></span>
+              Limit sugary snacks and drinks, which can contribute to plaque buildup
+            </li>
+          </ul>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="recommendations-section">
+          <h3>Recommendations from your Dentist:</h3>
+          <div class="recommendation-card">
+            <div class="recommendation-header">
+              <div class="icon-container">
+                <span class="icon">U</span>
+              </div>
+              <div class="recommendation-title">
+                <div class="title">Night Guard</div>
+                <div class="status">Scheduled</div>
+              </div>
+            </div>
+            <p class="recommendation-text">
+              During our recent checkup, we noticed some wear and tear on your teeth which could be due to 
+              grinding or clenching during sleep. A night guard could benefit your oral health significantly in the 
+              long term. Click <a href="#">here</a> to find out more.
+            </p>
+          </div>
+        </div>
+
+        <!-- Action Button -->
+        <button class="assign-badge-btn">
+          Assign a New Badge
+        </button>
+      </div>
+    </div>
+  </div>

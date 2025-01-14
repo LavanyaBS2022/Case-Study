@@ -4,11 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { PrimeNGModule } from '../../core/models/primeng.model';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { TimelineComponent } from './timeline/timeline.component';
+import { BadgeDialogComponent } from './badge-dialog/badge-dialog.component';
 
 @NgModule({
   declarations: [
     SearchBarComponent,
-    TimelineComponent
+    TimelineComponent,
+    BadgeDialogComponent
   ],
   imports: [
     CommonModule,

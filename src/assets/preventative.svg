@@ -1,0 +1,16 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="40" cy="40" r="38" fill="#FFFFFF" stroke="#009688" stroke-width="2"/>
+  
+  <!-- Circular arrows -->
+  <path d="M40 15 A25 25 0 0 1 65 40" fill="none" stroke="#009688" stroke-width="2"/>
+  <path d="M40 65 A25 25 0 0 1 15 40" fill="none" stroke="#009688" stroke-width="2"/>
+  <path d="M65 40 A25 25 0 0 1 40 65" fill="none" stroke="#009688" stroke-width="2"/>
+  <path d="M15 40 A25 25 0 0 1 40 15" fill="none" stroke="#009688" stroke-width="2"/>
+  
+  <!-- Arrow dots -->
+  <circle cx="40" cy="15" r="2.5" fill="#009688"/>
+  <circle cx="65" cy="40" r="2.5" fill="#009688"/>
+  <circle cx="40" cy="65" r="2.5" fill="#009688"/>
+  <circle cx="15" cy="40" r="2.5" fill="#009688"/>
+</svg>

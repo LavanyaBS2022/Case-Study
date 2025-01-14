@@ -1,0 +1,12 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="40" cy="40" r="38" fill="#FFFFFF" stroke="#009688" stroke-width="2"/>
+  
+  <!-- Pulse line -->
+  <path d="M15 40 L28 40 L35 25 L45 55 L52 40 L65 40" 
+        fill="none" 
+        stroke="#009688" 
+        stroke-width="3"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+</svg>

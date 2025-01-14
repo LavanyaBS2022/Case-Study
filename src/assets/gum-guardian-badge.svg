@@ -1,0 +1,19 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="40" cy="40" r="38" fill="#FFFFFF" stroke="#FF9999" stroke-width="2"/>
+  
+  <!-- Tooth outline -->
+  <path d="M25 30 Q40 25 55 30 Q60 40 55 50 Q40 60 25 50 Q20 40 25 30" 
+        fill="none" 
+        stroke="#FF9999" 
+        stroke-width="2"/>
+  
+  <!-- Inner decorative circle -->
+  <circle cx="40" cy="40" r="32" fill="none" stroke="#FF9999" stroke-width="1" stroke-dasharray="3 2"/>
+  
+  <!-- Curved text path -->
+  <path id="curve" d="M15,40 A25,25 0 1,1 65,40 A25,25 0 1,1 15,40" fill="none"/>
+  <text font-size="8" fill="#FF9999">
+    <textPath href="#curve" startOffset="28%">GUM GUARDIAN</textPath>
+  </text>
+</svg>

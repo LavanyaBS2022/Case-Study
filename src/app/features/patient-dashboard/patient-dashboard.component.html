@@ -1,7 +1,6 @@
 <div class="patient-dashboard">
   <app-search-bar (patientSelected)="onPatientSelected($event)"></app-search-bar>
 
-
   <div class="action-center-header">
     <div class="header-content">
       <span class="action-center">Action Center</span>
@@ -14,34 +13,105 @@
 
   <div class="patient-card">
     <div class="action-icons" *ngIf="selectedPatient">
-      <div class="icon-item" (click)="selectIcon('badge')">
-        <img src="assets/logo1.png" alt="Badge" class="logo" />
+      <div class="icon-item" (click)="selectIcon('badge')" [class.bounce]="selectedIcon === 'badge'">
+        <div class="icon-wrapper">
+          <img src="assets/logo1.png" alt="Badge" class="logo" />
+        </div>
         <span class="icon-label">{{ selectedPatient.badge }}</span>
         <div class="selection-bar" [ngClass]="{ 'selected': selectedIcon === 'badge' }"></div>
       </div>
-      <div class="icon-item" (click)="selectIcon('pulse')">
-        <img src="assets/logo2.png" alt="Pulse" class="logo" />
+      <div class="icon-item" (click)="selectIcon('pulse')" [class.bounce]="selectedIcon === 'pulse'">
+        <div class="icon-wrapper">
+          <img src="assets/logo2.png" alt="Pulse" class="logo" />
+        </div>
         <span class="icon-label">{{ selectedPatient.pulse }}</span>
         <div class="selection-bar" [ngClass]="{ 'selected': selectedIcon === 'pulse' }"></div>
       </div>
-      <div class="icon-item" (click)="selectIcon('unscheduled')">
-        <img src="assets/logo3.png" alt="Treatments" class="logo" />
+      <div class="icon-item" (click)="selectIcon('unscheduled')" [class.bounce]="selectedIcon === 'unscheduled'">
+        <div class="icon-wrapper">
+          <img src="assets/logo3.png" alt="Treatments" class="logo" />
+        </div>
         <span class="icon-label">{{ selectedPatient.unscheduled_treatment }} Unscheduled<br />Treatments</span>
         <div class="selection-bar" [ngClass]="{ 'selected': selectedIcon === 'unscheduled' }"></div>
       </div>
-      <div class="icon-item" (click)="selectIcon('preventative')">
-        <img src="assets/logo4.png" alt="Next Preventative" class="logo" />
+      <div class="icon-item" (click)="selectIcon('preventative')" [class.bounce]="selectedIcon === 'preventative'">
+        <div class="icon-wrapper">
+          <img src="assets/logo4.png" alt="Next Preventative" class="logo" />
+        </div>
         <span class="icon-label">Next Preventative<br />{{ selectedPatient.next_preventative_appointment }}</span>
         <div class="selection-bar" [ngClass]="{ 'selected': selectedIcon === 'preventative' }"></div>
       </div>
-      <div class="icon-item" (click)="selectIcon('regular')">
-        <img src="assets/logo5.png" alt="Next Regular" class="logo" />
+      <div class="icon-item" (click)="selectIcon('regular')" [class.bounce]="selectedIcon === 'regular'">
+        <div class="icon-wrapper">
+          <img src="assets/logo5.png" alt="Next Regular" class="logo" />
+        </div>
         <span class="icon-label">Next Regular<br />{{ selectedPatient.next_regular_appointment }}</span>
         <div class="selection-bar" [ngClass]="{ 'selected': selectedIcon === 'regular' }"></div>
       </div>
     </div>
-    
 
+    <div class="modal-overlay" *ngIf="selectedIcon === 'badge'">
+      <div class="modal-wrapper">
+        <div class="modal-header">
+          <span class="date-text">Message shared to {{ selectedPatient?.patient_name }} on 28-Apr-24</span>
+          <button class="close-btn" (click)="selectIcon('')">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 4L12 12M12 4L4 12" stroke="#00A896" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+    
+        <div class="modal-body">
+          <div class="greeting">
+            <span class="patient-name">{{ selectedPatient?.patient_name }}</span>, Great progress! We've completed a significant part of your gum treatments, and you're almost there. Keep up the good work!
+          </div>
+    
+          <div class="instructions-section">
+            <h3>At-Home Care Instructions:</h3>
+            <ul class="care-list">
+              <li>
+                <span class="diamond-bullet"></span>
+                <span>Use a soft-bristled toothbrush and floss gently to avoid irritating your gums.</span>
+              </li>
+              <li>
+                <span class="diamond-bullet"></span>
+                <span>Drink plenty of water to help stimulate saliva production, which naturally helps to clean the mouth and protect gums.</span>
+              </li>
+              <li>
+                <span class="diamond-bullet"></span>
+                <span>A diet rich in vitamins C and K is good for gum health</span>
+              </li>
+              <li>
+                <span class="diamond-bullet"></span>
+                <span>Limit sugary snacks and drinks, which can contribute to plaque buildup</span>
+              </li>
+            </ul>
+          </div>
+    
+          <div class="recommendations-section">
+            <h3>Recommendations from your Dentist:</h3>
+            <div class="recommendation-card">
+              <div class="recommendation-header">
+                <div class="night-guard-icon">U</div>
+                <div class="recommendation-info">
+                  <div class="rec-title">Night Guard</div>
+                  <div class="rec-status">Scheduled</div>
+                </div>
+              </div>
+              <p class="recommendation-text">
+                During our recent checkup, we noticed some wear and tear on your teeth which could be due to 
+                grinding or clenching during sleep. A night guard could benefit your oral health significantly in the 
+                long term. Click <a href="#" class="here-link">here</a> to find out more.
+              </p>
+            </div>
+          </div>
+    
+          <button class="assign-badge-btn">
+            Assign a New Badge
+          </button>
+        </div>
+      </div>
+    </div>
     <div class="section-divider" *ngIf="selectedPatient">
       <h3>Patient Journey</h3>
       <div class="line"></div>
@@ -50,6 +120,7 @@
     <div *ngIf="selectedPatient" class="timeline-container">
       <app-timeline [patient]="selectedPatient"></app-timeline>
     </div>
+
   </div>
 
   <div class="modal" *ngIf="showModal">

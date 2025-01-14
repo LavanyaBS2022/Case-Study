@@ -1,12 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Patient } from '../../core/models/patient';
 import { PatientService } from '../../core/services/patient.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-patient-dashboard',
   standalone: false,
   templateUrl: './patient-dashboard.component.html',
-  styleUrls: ['./patient-dashboard.component.scss'] 
+  styleUrls: ['./patient-dashboard.component.scss'] ,
+  animations: [
+    trigger('modalAnimation', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(0.95)' }),
+        animate('300ms ease-out', style({ opacity: 1, transform: 'scale(1)' }))
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({ opacity: 0, transform: 'scale(0.95)' }))
+      ])
+    ])
+  ]
 })
 export class PatientDashboardComponent implements OnInit {
   selectedIcon: string | null = null; 
@@ -16,8 +28,10 @@ export class PatientDashboardComponent implements OnInit {
   events: any[] = [];
   allAppointments: { date: string; type: string }[] = [];
   showModal: boolean = false;
-
-  constructor(private patientService: PatientService) {}
+  currentDate:Date=new Date
+  constructor(private patientService: PatientService) {
+    
+  }
 
   ngOnInit() {
     this.patientService.getPatients().subscribe((patients) => {
@@ -80,4 +94,7 @@ export class PatientDashboardComponent implements OnInit {
     const options: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric' };
     return dateObj.toLocaleDateString('en-US', options);
   }
+
+  
 }
+

@@ -1,0 +1,16 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="40" cy="40" r="38" fill="#FFFFFF" stroke="#FF4444" stroke-width="2"/>
+  
+  <!-- Target circles -->
+  <circle cx="40" cy="40" r="30" fill="none" stroke="#FF4444" stroke-width="1" stroke-dasharray="3 2"/>
+  
+  <!-- Crosshair lines -->
+  <line x1="40" y1="5" x2="40" y2="15" stroke="#FF4444" stroke-width="2"/>
+  <line x1="40" y1="65" x2="40" y2="75" stroke="#FF4444" stroke-width="2"/>
+  <line x1="5" y1="40" x2="15" y2="40" stroke="#FF4444" stroke-width="2"/>
+  <line x1="65" y1="40" x2="75" y2="40" stroke="#FF4444" stroke-width="2"/>
+  
+  <!-- Number placeholder -->
+  <text x="40" y="45" text-anchor="middle" font-size="20" fill="#FF4444" font-weight="bold">3</text>
+</svg>
