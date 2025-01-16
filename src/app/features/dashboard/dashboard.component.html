@@ -1,0 +1,120 @@
+<span class="action-center block mb-2 text-base font-semibold text-[#007b76]">Action Center</span>
+
+
+<div class="container mx-auto mt-2">
+  <div class="w-[1210px] mx-auto p-6 bg-white rounded-lg shadow-lg">
+<div class="flex gap-6 mb-10">
+    <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all border-l-4 border-[#007b76] flex flex-col justify-between flex-1">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-lg font-semibold text-[#007b76]">Today's Schedule</h3>
+       
+      </div>
+      <div>
+        <p class="text-3xl font-bold text-[#007b76] mb-1">{{todayAppointments}}</p>
+        <p class="text-sm text-[#007b76]/80">Scheduled Appointments</p>
+      </div>
+    </div>
+  
+    <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all border-l-4 border-[#007b76] flex flex-col justify-between flex-1">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-lg font-semibold text-[#007b76]">Pending Actions</h3>
+        
+      </div>
+      <div>
+        <p class="text-3xl font-bold text-[#007b76] mb-1">{{pendingActions}}</p>
+        <p class="text-sm text-[#007b76]/80">Actions Requiring Attention</p>
+      </div>
+    </div>
+  
+    <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all border-l-4 border-[#007b76] flex flex-col justify-between flex-1">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-lg font-semibold text-[#007b76]">Active Treatments</h3>
+       
+      </div>
+      <div>
+        <p class="text-3xl font-bold text-[#007b76] mb-1">8</p>
+        <p class="text-sm text-[#007b76]/80">Ongoing Patient Treatments</p>
+      </div>
+    </div>
+  
+    <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all border-l-4 border-[#007b76] flex flex-col justify-between flex-1">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-lg font-semibold text-[#007b76]">Recent Updates</h3>
+        
+      </div>
+      <div>
+        <p class="text-3xl font-bold text-[#007b76] mb-1">{{recentUpdates}}</p>
+        <p class="text-sm text-[#007b76]/80">New Updates Today</p>
+      </div>
+    </div>
+  </div>
+
+<div class="mb-10">
+    <h2 class="text-xl font-bold text-[#007b76] mb-5">Quick Actions</h2>
+    <div class="grid grid-cols-4 gap-6">
+      <button class="p-4 bg-white rounded-lg hover:shadow-md transition-all border border-[#007b76]/20 hover:border-[#007b76]/40 flex flex-col items-center group h-28 justify-center">
+        <div class="w-10 h-10 bg-[#E5F5F4] rounded-full group-hover:bg-[#007b76]/10 transition-colors mb-2 flex items-center justify-center">
+          <svg class="w-6 h-6 text-[#007b76]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+        </div>
+        <span class="text-sm font-medium text-[#007b76]">New Patient</span>
+      </button>
+
+      <button class="p-4 bg-white rounded-lg hover:shadow-md transition-all border border-[#007b76]/20 hover:border-[#007b76]/40 flex flex-col items-center group h-28 justify-center">
+        <div class="w-10 h-10 bg-[#E5F5F4] rounded-full group-hover:bg-[#007b76]/10 transition-colors mb-2 flex items-center justify-center">
+          <svg class="w-6 h-6 text-[#007b76]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <span class="text-sm font-medium text-[#007b76]">Schedule Appointment</span>
+      </button>
+
+      <button class="p-4 bg-white rounded-lg hover:shadow-md transition-all border border-[#007b76]/20 hover:border-[#007b76]/40 flex flex-col items-center group h-28 justify-center">
+        <div class="w-10 h-10 bg-[#E5F5F4] rounded-full group-hover:bg-[#007b76]/10 transition-colors mb-2 flex items-center justify-center">
+          <svg class="w-6 h-6 text-[#007b76]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+        </div>
+        <span class="text-sm font-medium text-[#007b76]">View Reports</span>
+      </button>
+
+      <button class="p-4 bg-white rounded-lg hover:shadow-md transition-all border border-[#007b76]/20 hover:border-[#007b76]/40 flex flex-col items-center group h-28 justify-center">
+        <div class="w-10 h-10 bg-[#E5F5F4] rounded-full group-hover:bg-[#007b76]/10 transition-colors mb-2 flex items-center justify-center">
+          <svg class="w-6 h-6 text-[#007b76]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          </svg>
+        </div>
+        <span class="text-sm font-medium text-[#007b76]">Settings</span>
+      </button>
+    </div>
+  </div>
+
+<div>
+    <h2 class="text-xl font-bold text-[#007b76] mb-6">Recent Activity</h2>
+    <div class="space-y-4">
+      <div *ngFor="let activity of recentActivities" 
+           class="p-4 bg-white rounded-lg hover:bg-gray-50 transition-all border border-gray-100 flex items-center justify-between group">
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 bg-[#E5F5F4] rounded-lg flex items-center justify-center group-hover:bg-[#007b76] transition-colors">
+            <svg class="w-5 h-5 text-[#007b76] group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="activity.icon" />
+            </svg>
+          </div>
+          <p class="text-base font-medium text-gray-900">{{activity.title}}</p>
+        </div>
+        
+        <div class="flex items-center gap-2">
+          <span class="text-sm text-[#007b76]">{{activity.time}}</span>
+          <svg class="w-4 h-4 text-gray-400 group-hover:text-[#007b76] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

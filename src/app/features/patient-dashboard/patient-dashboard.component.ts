@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Patient } from '../../core/models/patient';
 import { PatientService } from '../../core/services/patient.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-patient-dashboard',
@@ -29,7 +32,8 @@ export class PatientDashboardComponent implements OnInit {
   allAppointments: { date: string; type: string }[] = [];
   showModal: boolean = false;
   currentDate:Date=new Date
-  constructor(private patientService: PatientService) {
+  constructor(private patientService: PatientService,private cdr: ChangeDetectorRef, private router: Router,
+    private authService: AuthService) {
     
   }
 
@@ -40,10 +44,12 @@ export class PatientDashboardComponent implements OnInit {
   }
 
   onPatientSelected(patient: Patient) {
-    this.selectedPatient = patient;
+    this.selectedPatient = { ...patient }; 
     if (patient) {
-      this.updateTimeline(patient);
+      this.updateTimeline(this.selectedPatient);
     }
+    this.cdr.detectChanges(); // Trigger change detection manually
+
   }
 
   selectIcon(icon: string) {
@@ -95,6 +101,18 @@ export class PatientDashboardComponent implements OnInit {
     return dateObj.toLocaleDateString('en-US', options);
   }
 
-  
+  async logout(): Promise<void> {
+    try {
+      await this.authService.logout();
+      // Clear any local storage data
+      localStorage.removeItem('user');
+      // Navigate to login page
+      this.router.navigate(['/auth/login']);
+    } catch (error) {
+      console.error('Logout error:', error);
+      // Optionally show an error message to the user
+    }
+  }
+
 }
 

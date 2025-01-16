@@ -1,0 +1,42 @@
+@keyframes blink {
+    0%, 90%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
+  }
+  
+  @keyframes quiver {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(2px); }
+    75% { transform: translateY(-2px); }
+  }
+  
+  @keyframes drip {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(50px); opacity: 0; }
+  }
+  
+  @keyframes bounce-gentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .animate-blink {
+    animation: blink 4s infinite;
+  }
+  
+  .animate-quiver {
+    animation: quiver 2s infinite;
+  }
+  
+  .animate-drip-1 {
+    animation: drip 2s infinite;
+    animation-delay: 0s;
+  }
+  
+  .animate-drip-2 {
+    animation: drip 2s infinite;
+    animation-delay: 1s;
+  }
+  
+  .animate-bounce-gentle {
+    animation: bounce-gentle 3s infinite;
+  }

@@ -1,66 +1,87 @@
-<div *ngIf="isOpen" class="modal-overlay">
-    <div class="modal-content">
-      <!-- Header -->
-      <div class="modal-header">
-        <span class="date-text">Message shared to Lulu on 28-Apr-24</span>
-        <button class="close-btn" (click)="onClose.emit()">×</button>
-      </div>
+<div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl p-6 m-4 relative">
+    <button class="absolute right-4 top-4" (click)="onClose()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
 
-      <!-- Body -->
-      <div class="modal-body">
-        <!-- Greeting -->
-        <div class="greeting">
-          <span class="patient-name">Lulu</span>, Great progress! We've completed a significant part of your gum treatments, and you're almost there. Keep up the good work!
-        </div>
-
-        <!-- Care Instructions -->
-        <div class="instructions-section">
-          <h3>At-Home Care Instructions:</h3>
-          <ul class="care-list">
-            <li>
-              <span class="bullet"></span>
-              Use a soft-bristled toothbrush and floss gently to avoid irritating your gums.
-            </li>
-            <li>
-              <span class="bullet"></span>
-              Drink plenty of water to help stimulate saliva production, which naturally helps to clean the mouth and protect gums.
-            </li>
-            <li>
-              <span class="bullet"></span>
-              A diet rich in vitamins C and K is good for gum health
-            </li>
-            <li>
-              <span class="bullet"></span>
-              Limit sugary snacks and drinks, which can contribute to plaque buildup
-            </li>
-          </ul>
-        </div>
-
-        <!-- Recommendations -->
-        <div class="recommendations-section">
-          <h3>Recommendations from your Dentist:</h3>
-          <div class="recommendation-card">
-            <div class="recommendation-header">
-              <div class="icon-container">
-                <span class="icon">U</span>
-              </div>
-              <div class="recommendation-title">
-                <div class="title">Night Guard</div>
-                <div class="status">Scheduled</div>
-              </div>
+    <div class="mb-4">
+      <h2 class="text-lg font-semibold mb-2">{{selectedAppointment.type}}</h2>
+      <div class="flex items-start">
+        <div class="w-1 h-full bg-red-400 absolute left-0 top-0 rounded-tl-lg"></div>
+        <div class="flex-1">
+          <div class="text-red-500 text-sm mb-1">Sooner if Possible</div>
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <div class="text-sm text-gray-600">{{selectedAppointment.date}}</div>
+              <button class="ml-2 text-teal-500 text-sm">Change</button>
             </div>
-            <p class="recommendation-text">
-              During our recent checkup, we noticed some wear and tear on your teeth which could be due to 
-              grinding or clenching during sleep. A night guard could benefit your oral health significantly in the 
-              long term. Click <a href="#">here</a> to find out more.
-            </p>
           </div>
         </div>
-
-        <!-- Action Button -->
-        <button class="assign-badge-btn">
-          Assign a New Badge
-        </button>
       </div>
     </div>
+
+    <div class="mb-6 overflow-x-auto">
+      <table class="w-full">
+        <thead>
+          <tr class="text-sm text-gray-600">
+            <th class="text-left font-normal pb-2">Treatments</th>
+            <th class="text-left font-normal pb-2">Provider</th>
+            <th class="text-left font-normal pb-2">Tooth #</th>
+            <th class="text-left font-normal pb-2">Surface</th>
+            <th class="text-right font-normal pb-2">Fee</th>
+            <th class="text-right font-normal pb-2">Insurance Est.</th>
+            <th class="text-right font-normal pb-2">Patient Est.</th>
+            <th class="text-right font-normal pb-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let appointment of patient.upcoming_appointments" class="border-t border-gray-100">
+            <td class="py-3">{{appointment.date}} - {{appointment.type}}</td>
+            <td class="py-3">
+              <div class="flex items-center">
+                {{appointment.treatment}}
+              </div>
+            </td>
+            <td class="py-3"></td>
+            <td class="py-3"></td>
+            <td class="py-3 text-right">{{appointment.fee}}</td>
+            <td class="py-3 text-right">{{appointment.insurance_est}}</td>
+            <td class="py-3 text-right">{{appointment.patient_est}}</td>
+            <td class="py-3">
+              <div class="flex items-center justify-end gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01" />
+                </svg>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="border-t border-gray-200">
+            <td colspan="4" class="py-3 text-right text-gray-600">Total</td>
+            <td class="py-3 text-right">{{getTotalFee()}}</td>
+            <td class="py-3 text-right">{{getTotalInsuranceEst()}}</td>
+            <td class="py-3 text-right">{{getTotalPatientEst()}}</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <div class="px-4 py-1 bg-teal-500 text-white rounded-full text-sm">Confirmed</div>
+      <div class="px-4 py-1 bg-orange-500 text-white rounded-full text-sm">Reminder</div>
+      <div class="px-4 py-1 bg-gray-200 text-gray-600 rounded-full text-sm">Check In</div>
+      <div class="px-4 py-1 bg-gray-200 text-gray-600 rounded-full text-sm">Walk Out</div>
+      <button class="text-gray-600 text-sm ml-4">View Statement</button>
+    </div>
   </div>
+</div>

@@ -2,19 +2,20 @@
   <div class="timeline-dots-container">
     <ng-container *ngFor="let year of yearsToShow; let isLast = last">
       <div class="timeline-year">
-        <a href="#">{{ year }}</a>
-        <span>»</span>
+        <span>{{ year }}</span>
+        <span *ngIf="!isLast">»</span>
       </div>
 
       <ng-container *ngFor="let appointment of appointmentsByYear[year]">
         <div class="timeline-dot-wrapper">
-          <div class="timeline-dot"></div>
+          <div
+            class="timeline-dot cursor-pointer"
+            (click)="toggleAppointment(appointment)"
+          ></div>
           <div *ngIf="!isLast" class="timeline-line"></div>
         </div>
       </ng-container>
     </ng-container>
-
-    <a href="#" class="timeline-view-all" (click)="onViewAll()">View All</a>
   </div>
 
   <div class="timeline-dates-container">
@@ -27,4 +28,12 @@
       </ng-container>
     </ng-container>
   </div>
+</div>
+
+<div *ngIf="selectedAppointment && patient" class="badge-dialog-container">
+  <app-badge-dialog
+    [patient]="patient"
+    [selectedAppointment]="selectedAppointment"
+    (close)="onClose()"
+  ></app-badge-dialog>
 </div>

@@ -212,7 +212,7 @@ body, html {
 
 .selection-bar {
   height: 2px;
-  width: 80%;
+  width: 100%;
   background-color: rgb(224, 223, 223);
   position: absolute; 
   bottom: 0;
@@ -263,10 +263,16 @@ body, html {
 
 .close-btn {
   border: none;
-  background: none;
+  background: transparent;
   padding: 4px;
   cursor: pointer;
   color: #00A896;
+  outline: none; 
+  
+  &:hover {
+    opacity: 0.7; 
+    background: none; 
+  }
 }
 
 .modal-body {
@@ -446,6 +452,7 @@ h3 {
   position: relative;
   box-sizing: border-box;
   transition: all 0.3s ease;
+  margin-bottom: 10px;
 
   &:hover {
     .icon-wrapper {
@@ -488,4 +495,104 @@ h3 {
   max-height: 80px;
 }
 
+.celebration-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.celebration-modal-wrapper {
+  background: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  padding: 40px 24px;
+}
+
+.celebration-modal-header {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.celebration-close-btn {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none; 
+  
+  &:hover {
+    opacity: 0.7; 
+    background: none; 
+  }
+}
+
+.celebration-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.celebration-icon {
+  margin-bottom: 24px;
+}
+
+.celebration-text {
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1A202C;
+    margin: 0 0 12px 0;
+  }
+
+  p {
+    font-size: 16px;
+    color: #4A5568;
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+.logout-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background-color: #00A896;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 11px;
+  margin-bottom: 12px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #008578;
+  }
+
+  i {
+    font-size: 16px;
+  }
+}
 

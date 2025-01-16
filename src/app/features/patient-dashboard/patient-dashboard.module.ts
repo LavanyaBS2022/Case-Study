@@ -6,11 +6,13 @@ import { PatientDashboardComponent } from './patient-dashboard.component';
 import { PrimeNGModule } from '../../core/models/primeng.model';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/components/shared.module';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 
 @NgModule({
   declarations: [
     PatientDashboardComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,

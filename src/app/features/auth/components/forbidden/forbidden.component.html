@@ -1,0 +1,33 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-[#E8F3F3]">
+    <div class="text-center px-4">
+      <div class="mb-3 mt-[-80px]">
+        <svg width="80" height="80" viewBox="0 0 120 120" class="mx-auto">
+                      <circle cx="60" cy="60" r="45" fill="#00A896" opacity="0.1"/>
+          <path d="M40 50 v-10 c0-11 9-20 20-20 s20 9 20 20 v10" 
+                fill="none" stroke="#00A896" stroke-width="4"/>
+          <rect x="35" y="50" width="50" height="40" rx="5" 
+                fill="#00A896"/>
+          <circle cx="60" cy="70" r="5" fill="white"/>
+          <rect x="58" y="70" width="4" height="10" fill="white"/>
+        </svg>
+      </div>
+  
+      <h1 class="text-4xl font-bold text-gray-800 mb-2">Access Restricted</h1>
+      <p class="text-gray-600 mb-8 max-w-md mx-auto">
+        This area requires authentication. Please sign in with your staff credentials to access the dental portal.
+      </p>
+  
+      <a [routerLink]="['/auth/login']"
+         [queryParams]="{ returnUrl: returnUrl }"
+         class="inline-flex items-center px-6 py-2.5 bg-[#00A896] text-white rounded-md
+                hover:bg-[#008080] transition-all duration-300 shadow-sm">
+        <span class="font-medium whitespace-nowrap">Sign In</span>
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M9 5l7 7-7 7"/>
+        </svg>
+      </a>
+  
+      <p class="mt-8 text-gray-400 text-sm">Error Code: 403</p>
+    </div>
+  </div>

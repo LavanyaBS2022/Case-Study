@@ -17,7 +17,7 @@ import { BadgeDialogComponent } from './badge-dialog/badge-dialog.component';
     FormsModule,
     PrimeNGModule,
   ],
-  exports: [SearchBarComponent,TimelineComponent] 
+  exports: [SearchBarComponent,TimelineComponent,BadgeDialogComponent] 
 
 })
 export class SharedModule { }

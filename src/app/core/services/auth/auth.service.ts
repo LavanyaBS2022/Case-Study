@@ -1,38 +1,65 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Observable, from } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import firebase from 'firebase/compat/app'; 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private readonly USERS = [
-    { email: 'admin@dental.com', password: 'admin123' }
-  ];
+  user$: Observable<firebase.User | null>;
 
-  login(credentials: { email: string; password: string }): Observable<any> {
-    const user = this.USERS.find(u => 
-      u.email === credentials.email && 
-      u.password === credentials.password
+  constructor(private afAuth: AngularFireAuth) {
+    this.user$ = this.afAuth.authState.pipe(
+      tap(user => {
+        if (user) {
+          localStorage.setItem('user', JSON.stringify({
+            uid: user.uid,
+            email: user.email,
+          }));
+        }
+      })
     );
-
-    if (user) {
-      const userData = {
-        email: user.email,
-        token: 'mock-jwt-token'
-      };
-      localStorage.setItem('user', JSON.stringify(userData));
-      return of(userData).pipe(delay(800));
-    }
-    return throwError(() => new Error('Invalid credentials'));
-  }
-
-  logout(): void {
-    localStorage.removeItem('user');
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('user');
+    const user = localStorage.getItem('user');
+    return user !== null;
   }
+
+  async login(email: string, password: string): Promise<any> {
+    try {
+      const result = await this.afAuth.signInWithEmailAndPassword(email, password);
+      if (result.user) {
+        localStorage.setItem('user', JSON.stringify({
+          uid: result.user.uid,
+          email: result.user.email,
+        }));
+      }
+      return result;
+    } catch (error) {
+      console.error('Error during login:', error);
+      throw error;
+    }
+  }
+
+  async logout(): Promise<void> {
+    try {
+      await this.afAuth.signOut();
+      localStorage.removeItem('user');
+    } catch (error) {
+      console.error('Error during logout:', error);
+      throw error;
+    }
+  }
+
   
+  signup(email: string, password: string): Promise<void> {
+    return this.afAuth.createUserWithEmailAndPassword(email, password).then(() => {});
+  }
+
+  forgotPassword(email: string): Promise<void> {
+    return this.afAuth.sendPasswordResetEmail(email);
+  }
 }
