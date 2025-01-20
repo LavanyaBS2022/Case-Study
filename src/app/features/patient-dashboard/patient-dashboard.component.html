@@ -1,15 +1,21 @@
 <div class="patient-dashboard">
-  <app-search-bar (patientSelected)="onPatientSelected($event)"></app-search-bar>
   
+    <div class="flex items-center py-2 w-full">
+      <app-search-bar class="flex-1" (patientSelected)="onPatientSelected($event)"></app-search-bar>
+      <div class="flex-1 flex justify-end">
+        <button class="text-[#009688] hover:opacity-80 transition-opacity" (click)="logout()">
+          <i class="pi pi-sign-out"></i> 
+          Logout
+        </button>
+      </div>
+    </div>
+
   <ng-container *ngIf="!selectedPatient">
     <app-dashboard></app-dashboard>
   </ng-container>
-  <div class="logout-container">
-    <button class="logout-button" (click)="logout()">
-      <i class="pi pi-sign-out"></i> 
-      Logout
-    </button>
-  </div>
+
+
+  
   <div class="action-center-header" *ngIf="selectedPatient">
     <div class="header-content">
       <span class="action-center">Action Center</span>

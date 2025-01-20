@@ -6,6 +6,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        red: {
+          400: '#f87171', // Adjust this to match your red accent
+        },
+        teal: {
+          500: '#14b8a6',
+          600: '#0d9488',
+        },
+        orange: {
+          200: '#fed7aa',
+          400: '#fb923c',
+          500: '#f97316',
+        },
         dentalGreen: '#CCE5E4', // Custom button color
       },
       animation: {

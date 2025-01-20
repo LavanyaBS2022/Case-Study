@@ -18,9 +18,18 @@ export class SearchBarComponent implements OnInit {
   constructor(private patientService: PatientService) {}
 
   ngOnInit(): void {
-    this.patientService.getPatients().subscribe((patients) => {
-      this.allPatients = patients;
-      this.filteredPatients = patients; 
+    this.loadPatients();
+  }
+
+  private loadPatients(): void {
+    this.patientService.getPatients().subscribe({
+      next: (patients) => {
+        this.allPatients = patients;
+        this.filteredPatients = [];
+      },
+      error: (error) => {
+        console.error('Error loading patients:', error);
+      }
     });
   }
 
@@ -28,19 +37,20 @@ export class SearchBarComponent implements OnInit {
     if (this.searchTerm.trim()) {
       this.filteredPatients = this.allPatients.filter((patient) =>
         patient.patient_name.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
-
-      this.filteredPatients.sort((a, b) =>
-        a.patient_name.localeCompare(b.patient_name)
-      );
+      ).sort((a, b) => a.patient_name.localeCompare(b.patient_name));
     } else {
       this.filteredPatients = [];
     }
   }
 
-  selectPatient(patient: Patient) {
+  selectPatient(patient: Patient, event?: MouseEvent) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    
     this.patientSelected.emit(patient);
-    this.resetSearch(); 
+    this.resetSearch();
   }
 
   resetSearch() {
@@ -50,16 +60,25 @@ export class SearchBarComponent implements OnInit {
   }
 
   onKeydown(event: KeyboardEvent) {
-    if (event.key === 'ArrowDown') {
-      if (this.selectedIndex < this.filteredPatients.length - 1) {
-        this.selectedIndex++;
-      }
-    } else if (event.key === 'ArrowUp') {
-      if (this.selectedIndex > 0) {
-        this.selectedIndex--;
-      }
-    } else if (event.key === 'Enter' && this.selectedIndex >= 0) {
-      this.selectPatient(this.filteredPatients[this.selectedIndex]);
+    switch(event.key) {
+      case 'ArrowDown':
+        event.preventDefault();
+        if (this.selectedIndex < this.filteredPatients.length - 1) {
+          this.selectedIndex++;
+        }
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        if (this.selectedIndex > 0) {
+          this.selectedIndex--;
+        }
+        break;
+      case 'Enter':
+        event.preventDefault();
+        if (this.selectedIndex >= 0) {
+          this.selectPatient(this.filteredPatients[this.selectedIndex]);
+        }
+        break;
     }
   }
 

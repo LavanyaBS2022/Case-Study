@@ -1,22 +1,27 @@
 <div class="search-container">
-    <input
-      type="text"
-      [(ngModel)]="searchTerm"
-      placeholder="Search Patient"
-      (input)="searchPatients()"
-      (keydown)="onKeydown($event)"
-      class="search-input"
-    />
-    <i class="fas fa-search search-icon"></i> 
-  
-    <ul *ngIf="searchTerm && filteredPatients.length > 0" class="patient-list">
-      <li *ngFor="let patient of filteredPatients; let i = index" (click)="selectPatient(patient)" [ngClass]="getHighlightClass(i)" class="patient-item">
-        {{ patient.patient_name }}
-      </li>
-    </ul>
-  
-    <div *ngIf="filteredPatients.length === 0 && searchTerm" class="no-results">
-      No patients found.
-    </div>
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    placeholder="Search Patient"
+    (input)="searchPatients()"
+    (keydown)="onKeydown($event)"
+    [class.error]="filteredPatients.length === 0 && searchTerm"
+    class="search-input"
+  />
+  <i class="fas fa-search search-icon"></i>
+
+  <ul *ngIf="searchTerm && filteredPatients.length > 0" class="patient-list">
+    <li 
+      *ngFor="let patient of filteredPatients; let i = index"
+      (click)="selectPatient(patient, $event)"
+      [ngClass]="getHighlightClass(i)"
+      class="patient-item cursor-pointer"
+    >
+      {{ patient.patient_name }}
+    </li>
+  </ul>
+
+  <div *ngIf="filteredPatients.length === 0 && searchTerm" class="no-results">
+    No patients found.
   </div>
-  
+</div>

@@ -1,39 +1,90 @@
-<div class="timeline">
-  <div class="timeline-dots-container">
-    <ng-container *ngFor="let year of yearsToShow; let isLast = last">
-      <div class="timeline-year">
-        <span>{{ year }}</span>
-        <span *ngIf="!isLast">»</span>
+<div class="p-4">
+  <div class="flex space-x-8">
+    <div class="w-44">
+      <label for="yearSelector" class="block text-xs font-medium text-gray-600 mb-1.5">
+        Select Year
+      </label>
+      <select
+        id="yearSelector"
+        class="select-custom w-full h-9 rounded-md border border-[#009688] py-1.5 px-2.5 text-sm focus:border-[#009688] focus:ring-1 focus:ring-[#009688] focus:outline-none bg-white"
+        [(ngModel)]="currentYear"
+        (change)="updateAppointmentsByYear()"
+      >
+        <option value="view-all">View All</option>
+        <option *ngFor="let year of yearsToShow" [value]="year">
+          {{ year }}
+        </option>
+      </select>
+    </div>
+
+    <div class="flex-1 bg-white rounded-lg">
+      <div *ngIf="currentYear !== 'view-all'" class="timeline-wrapper">
+        <div class="timeline-container" [style.minWidth.px]="(appointmentsByYear[currentYear]?.length || 1) * 140">
+          <div class="timeline-line"></div>
+          <div class="timeline-events">
+            <div
+              *ngFor="let appointment of appointmentsByYear[currentYear] || []"
+              class="timeline-event"
+            >
+              <div 
+                class="timeline-dot" 
+                (click)="selectedAppointment = appointment"
+              ></div>
+              <div class="timeline-content">
+                <p class="timeline-date">{{ formatDateToMonth(appointment.date) }}</p>
+                <p class="timeline-type">{{ appointment.type }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <ng-container *ngFor="let appointment of appointmentsByYear[year]">
-        <div class="timeline-dot-wrapper">
-          <div
-            class="timeline-dot cursor-pointer"
-            (click)="toggleAppointment(appointment)"
-          ></div>
-          <div *ngIf="!isLast" class="timeline-line"></div>
-        </div>
-      </ng-container>
-    </ng-container>
+    </div>
   </div>
 
-  <div class="timeline-dates-container">
-    <ng-container *ngFor="let year of yearsToShow">
-      <ng-container *ngFor="let appointment of appointmentsByYear[year]">
-        <div class="timeline-content">
-          <div class="timeline-date">{{ formatDateToMonth(appointment.date) }}</div>
-          <div class="timeline-type">{{ appointment.type }}</div>
+  <div *ngIf="currentYear === 'view-all'" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl modal-container">
+      <div class="bg-[#009688] text-white px-4 py-3 rounded-t-lg flex justify-between items-center modal-header">
+        <h3 class="text-base font-medium">Appointment History</h3>
+        <button 
+          class="text-white hover:text-gray-200"
+          (click)="closeViewAll()"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="modal-table-container">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-4 py-2 text-left text-xs font-medium text-[#009688] uppercase tracking-wider">Date</th>
+                <th class="px-4 py-2 text-left text-xs font-medium text-[#009688] uppercase tracking-wider">Type</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr *ngFor="let appointment of filteredAppointments" 
+                  class="hover:bg-[#F1F5F9] transition-colors duration-150">
+                <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600">
+                  {{ appointment.date | date:'mediumDate' }}
+                </td>
+                <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600">
+                  {{ appointment.type }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      </ng-container>
-    </ng-container>
+      </div>
+    </div>
   </div>
-</div>
 
-<div *ngIf="selectedAppointment && patient" class="badge-dialog-container">
   <app-badge-dialog
-    [patient]="patient"
-    [selectedAppointment]="selectedAppointment"
-    (close)="onClose()"
-  ></app-badge-dialog>
+  *ngIf="selectedAppointment"
+  [selectedAppointment]="selectedAppointment"
+  (closeDialog)="onDialogClose()"
+></app-badge-dialog>
+
 </div>

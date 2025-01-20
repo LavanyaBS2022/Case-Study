@@ -1,165 +1,163 @@
-.timeline {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 20px;
+.select-custom {
+  option {
+    background-color: white;
+    color: #4b5563;
+    padding: 8px;
+    
+    &:hover {
+      background-color: #F1F5F9;
+    }
+    
+    &:checked {
+      background-color: #F1F5F9;
+      color: #009688;
+    }
+  }
 }
 
-.timeline-dots-container {
-    display: flex;
-    align-items: flex-start;
-    background-color: #cce5e4;
-    padding: 5px 15px;
-    border-radius: 15px;
-    width: 70%;
-    margin-top: 20px;
-    overflow-x: auto;
-    position: relative;
+.timeline-wrapper {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+  padding: 12px 0;
+  margin: 8px 0;
+  
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 2px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 150, 136, 0.3);
+    border-radius: 2px;
+    
+    &:hover {
+      background: rgba(0, 150, 136, 0.5);
+    }
+  }
 }
 
-.timeline-year {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    font-weight: bold;
-    color: #007b76;
-}
-
-.timeline-year a {
-    text-decoration: none;
-    color: #007b76;
-}
-
-.timeline-year span {
-    margin: 0 10px;
-    font-size: 14px;
-}
-
-.timeline-dot-wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 45px;
-}
-
-.timeline-dot {
-    width: 8px;
-    height: 8px;
-    background-color: #007b76;
-    border-radius: 50%;
-    border: 1px solid white;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    margin-top: 4px;
+.timeline-container {
+  position: relative;
+  height: 90px;
+  padding: 0 70px;
 }
 
 .timeline-line {
-    position: absolute;
-    top: 50%;
-    left: 50%; 
-    width: 35px; 
-    height: 2px;
-    background-color: #007b76;
-    z-index: 0;
-    transform: translate(30%, 60%);
+  position: absolute;
+  top: 18px;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background-color: rgba(0, 150, 136, 0.15);
+  z-index: 1;
 }
 
-.timeline-dates-container {
-    display: flex;
-    align-items: center;
-    width: 80%;
-    padding: 0 10px;
-    margin-top: 20px;
-    margin-left:50px;
+.timeline-events {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-event {
+  position: relative;
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: #009688;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(0, 150, 136, 0.15);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: translateX(-50%) scale(1.2);
+    background-color: #00796b;
+    box-shadow: 0 0 0 4px rgba(0, 150, 136, 0.25);
+  }
 }
 
 .timeline-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 45px;
+  position: absolute;
+  top: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  padding: 2px;
 }
 
 .timeline-date {
-    font-size: 10px;
-    font-weight: bold;
-    color: #007b76;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  color: rgba(0, 150, 136, 0.8);
+  margin-bottom: 2px;
 }
 
 .timeline-type {
-    font-size: 8px;
-    color: #555;
+  font-size: 0.75rem;
+  color: rgba(0, 150, 136, 0.5);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.timeline-view-all {
-    font-size: 12px;
-    font-weight: bold;
-    color: #007b76;
-    text-decoration: none;
-    margin-left: 20px;
-    cursor: pointer;
+.modal-container {
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.timeline-view-all:hover {
-    text-decoration: underline;
+.modal-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-// Add to timeline.component.scss
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
+.modal-body {
+  overflow-y: auto;
+  max-height: calc(80vh - 4rem);
+  padding: 1rem;
+}
+
+.modal-table-container {
+  overflow-x: auto;
+  max-height: 100%;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: white;
+}
+
+tbody tr {
+  transition: background-color 0.15s ease-in-out;
   
-  .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 600px;
+  &:hover {
+    background-color: #F1F5F9;
   }
-  
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #cce5e4;
-  }
-  
-  .close-btn {
-    border: none;
-    background: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #00A896;
-  }
-  
-  .appointments-table {
-    width: 100%;
-    border-collapse: collapse;
-    
-    th, td {
-      padding: 12px;
-      text-align: left;
-      border-bottom: 1px solid #E2E8F0;
-    }
-    
-    th {
-      background-color: #cce5e4;
-      font-weight: 600;
-    }
-    
-    tr:hover td {
-      background-color: #F8FAFC;
-    }
-  }
+}
