@@ -12,6 +12,8 @@ import { AuthService } from '../../../../core/services/auth/auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isSubmitting = false;
+  showPassword: boolean = false;
+
   errorMessage = '';
   returnUrl: string = '/patient-dashboard';
 
@@ -28,10 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Get return URL from route parameters or default to '/patient-dashboard'
     this.returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/patient-dashboard';
-
-    // Check if user is already logged in
     const user = localStorage.getItem('user');
     if (user) {
       this.router.navigate(['/patient-dashboard']);
@@ -46,21 +45,16 @@ export class LoginComponent implements OnInit {
       const { email, password } = this.loginForm.value;
   
       try {
-        // Call the AuthService login method
         const result = await this.authService.login(email, password);
-        
-        // Store user data in localStorage
-        if (result && result.user) {
+          if (result && result.user) {
           localStorage.setItem('user', JSON.stringify({
             uid: result.user.uid,
             email: result.user.email
           }));
         }
         
-        // Navigate to the return URL or dashboard
         this.router.navigateByUrl(this.returnUrl);
       } catch (error: any) {
-        // Handle specific Firebase auth errors
         if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
           this.errorMessage = 'Invalid email or password';
         } else if (error.code === 'auth/too-many-requests') {
@@ -73,7 +67,6 @@ export class LoginComponent implements OnInit {
         this.isSubmitting = false;
       }
     } else {
-      // Mark all fields as touched to display validation errors
       this.loginForm.markAllAsTouched();
     }
   }
@@ -85,5 +78,9 @@ export class LoginComponent implements OnInit {
       if (control.errors['email']) return 'Invalid email format';
     }
     return '';
+  }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
   }
 }

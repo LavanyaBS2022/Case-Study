@@ -6,7 +6,6 @@ import { AuthService } from '../../../../core/services/auth/auth.service';
 @Component({
   selector: 'app-signup',
   standalone: false,
-  
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
@@ -14,7 +13,8 @@ export class SignupComponent {
     signupForm: FormGroup;
     isSubmitting = false;
     errorMessage = '';
-  
+    showPassword: boolean = false;
+
     constructor(
       private fb: FormBuilder,
       private router: Router,
@@ -30,18 +30,15 @@ export class SignupComponent {
       if (this.signupForm.valid && !this.isSubmitting) {
         this.isSubmitting = true;
         this.errorMessage = '';
-        
+      
         const { email, password } = this.signupForm.value;
   
         try {
-          // Call the AuthService signup method
           await this.authService.signup(email, password);
           
-          // Navigate to the login page after successful signup
           this.router.navigate(['/auth/login']);
         } catch (error) {
-          // Handle errors (e.g., email already in use)
-          this.errorMessage = 'Failed to create account. Please try again.';
+          this.errorMessage = 'The email address is already in use by another account.';
           console.error('Signup error:', error);
         } finally {
           this.isSubmitting = false;
@@ -59,6 +56,10 @@ export class SignupComponent {
         if (control.errors['minlength']) return 'Password must be at least 6 characters long';
       }
       return '';
+    }
+  
+    togglePassword() {
+      this.showPassword = !this.showPassword;
     }
   }
 

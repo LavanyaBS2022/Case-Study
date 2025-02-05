@@ -15,7 +15,6 @@
   </ng-container>
 
 
-  
   <div class="action-center-header" *ngIf="selectedPatient">
     <div class="header-content">
       <span class="action-center">Action Center</span>
@@ -68,7 +67,7 @@
     <div class="modal-overlay" *ngIf="selectedIcon === 'badge'">
       <div class="modal-wrapper">
         <div class="modal-header">
-          <span class="date-text">Message shared to {{ selectedPatient?.patient_name }} on 28-Apr-24</span>
+          <span class="date-text">Message shared to {{ selectedPatient.patient_name }} on 28-Apr-24</span>
           <button class="close-btn" (click)="selectIcon('')">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M4 4L12 12M12 4L4 12" stroke="#00A896" stroke-width="2" stroke-linecap="round"/>
@@ -78,7 +77,7 @@
     
         <div class="modal-body">
           <div class="greeting">
-            <span class="patient-name">{{ selectedPatient?.patient_name }}</span>, Great progress! We've completed a significant part of your gum treatments, and you're almost there. Keep up the good work!
+            <span class="patient-name">{{ selectedPatient.patient_name }}</span>, Great progress! We've completed a significant part of your gum treatments, and you're almost there. Keep up the good work!
           </div>
     
           <div class="instructions-section">
@@ -155,7 +154,7 @@
 
       <div class="celebration-text">
         <h2>Hooray!</h2>
-        <p>{{ selectedPatient?.patient_name }} seems happy with our service.</p>
+        <p>{{ selectedPatient.patient_name }} seems happy with our service.</p>
       </div>
     </div>
   </div>

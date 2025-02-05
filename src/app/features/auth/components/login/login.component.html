@@ -1,13 +1,11 @@
 <div class="min-h-screen flex items-center justify-center bg-dentalGreen">
   <div class="bg-white shadow-lg rounded-lg w-full max-w-md p-4 sm:p-6">
-    <!-- Reduced padding and made logo smaller -->
     <div class="text-center mb-4">
       <img src="../../../../assets/dental_logo.webp" alt="Dental Logo" class="mx-auto w-16 h-16 rounded-full">
       <h1 class="text-xl font-bold text-blue-600 mt-2">Welcome to Smile Dental Care</h1>
       <p class="text-gray-600 text-sm">Your trusted dental health partner</p>
     </div>
 
-    <!-- Reduced space between form elements -->
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
       <div>
         <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
@@ -18,22 +16,27 @@
           placeholder="admin@dental.com" 
           class="w-full px-3 py-1.5 border rounded-lg focus:ring-blue-500 focus:border-blue-500"
           [ngClass]="{'border-red-500': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}"
-        />
+        /> 
         <p class="text-red-500 text-xs mt-0.5" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
           {{ getErrorMessage('email') }}
         </p>
       </div>
 
-      <div>
+      <div class="relative">
         <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
         <input 
           id="password" 
-          type="password" 
+          [type]="showPassword ? 'text' : 'password'"
           formControlName="password"
           placeholder="admin123" 
-          class="w-full px-3 py-1.5 border rounded-lg focus:ring-blue-500 focus:border-blue-500"
+          class="w-full px-3 py-1.5 border rounded-lg focus:ring-blue-500 focus:border-blue-500 pr-10"
           [ngClass]="{'border-red-500': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}"
         />
+        <span 
+          class="absolute inset-y-0 right-2 flex items-center cursor-pointer text-gray-600 mt-4"
+          (click)="togglePassword()">
+          {{ showPassword ? '🙈' : '👁️' }}
+        </span>
         <p class="text-red-500 text-xs mt-0.5" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
           {{ getErrorMessage('password') }}
         </p>
@@ -52,7 +55,6 @@
         </button>
       </div>
 
-      <!-- Reduced margins and made links more compact -->
       <div class="text-center mt-2">
         <a [routerLink]="['/auth/forgot-password']" class="text-blue-600 hover:underline text-sm">
           Forgot password?

@@ -46,9 +46,9 @@ export class TimelineComponent implements OnChanges {
       ...this.yearsToShow.map(year => ({
         label: year.toString(),
         value: year
-      }))
+      })) 
     ];
-  }
+  } 
 
   updateYearsToShow(): void {
     if (!this.patient?.past_appointments.length) return;
@@ -107,9 +107,6 @@ export class TimelineComponent implements OnChanges {
     });
   }
 
-  getAppointmentTime(): string {
-    return '12:00 - 1:00 pm';
-  }
 
   toggleAppointment(appointment: Appointment): void {
     this.selectedAppointment = appointment;

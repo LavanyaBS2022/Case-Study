@@ -19,7 +19,7 @@
 
     <div class="flex-1 bg-white rounded-lg">
       <div *ngIf="currentYear !== 'view-all'" class="timeline-wrapper">
-        <div class="timeline-container" [style.minWidth.px]="(appointmentsByYear[currentYear]?.length || 1) * 140">
+        <div class="timeline-container" [style.minWidth.px]="(appointmentsByYear[currentYear].length || 1) * 140">
           <div class="timeline-line"></div>
           <div class="timeline-events">
             <div

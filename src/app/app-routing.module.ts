@@ -1,4 +1,3 @@
-// app-routing.module.ts
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/services/guard/auth.guard';
@@ -14,7 +13,7 @@ const routes: Routes = [
   { 
     path: 'forbidden', 
     component: ForbiddenComponent 
-  }, // Move this before the wildcard route
+  },
   {
     path: 'patient-dashboard',
     loadChildren: () => 
@@ -31,7 +30,7 @@ const routes: Routes = [
     path: 'dashboard',
     redirectTo: 'features/dashboard',
   },
-  { path: '**', redirectTo: '/forbidden' } // Keep wildcard route at the end
+  { path: '**', redirectTo: '/forbidden' } 
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

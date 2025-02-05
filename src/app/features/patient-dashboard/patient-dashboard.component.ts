@@ -38,17 +38,17 @@ export class PatientDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.patientService.getPatients().subscribe((patients) => {
+    this.patientService.getPatients().subscribe((patients) => { 
       this.patients = patients;
     });
   }
 
   onPatientSelected(patient: Patient) {
-    this.selectedPatient = { ...patient }; 
+    this.selectedPatient = { ...patient };  
     if (patient) {
-      this.updateTimeline(this.selectedPatient);
+      this.updateTimeline(this.selectedPatient); 
     }
-    this.cdr.detectChanges(); // Trigger change detection manually
+    this.cdr.detectChanges(); 
 
   }
 
@@ -104,13 +104,10 @@ export class PatientDashboardComponent implements OnInit {
   async logout(): Promise<void> {
     try {
       await this.authService.logout();
-      // Clear any local storage data
       localStorage.removeItem('user');
-      // Navigate to login page
       this.router.navigate(['/auth/login']);
     } catch (error) {
       console.error('Logout error:', error);
-      // Optionally show an error message to the user
     }
   }
 

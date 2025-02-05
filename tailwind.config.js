@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       colors: {
         red: {
-          400: '#f87171', // Adjust this to match your red accent
+          400: '#f87171', 
         },
         teal: {
           500: '#14b8a6',
@@ -18,7 +18,7 @@ module.exports = {
           400: '#fb923c',
           500: '#f97316',
         },
-        dentalGreen: '#CCE5E4', // Custom button color
+        dentalGreen: '#CCE5E4',
       },
       animation: {
         'bounce': 'bounce 2s infinite',

@@ -31,7 +31,6 @@ export class ForgotPasswordComponent {
       const { email } = this.forgotPasswordForm.value;
 
       try {
-        // Call the AuthService forgotPassword method
         await this.authService.forgotPassword(email);
         
         this.successMessage = 'Password reset email sent. Please check your inbox.';
